@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>บัตรสมาชิก — เกศเกล้า บึงสามพัน (Mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Trirong:wght@400;600;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose:#B76E79; --rose-deep:#8F4F5C; --rose-soft:#E8B4BC; --gold:#C9A227;
+    --cream:#FFFAF7; --blush:#FDF4F2; --ink:#3D2C31; --ink2:#7A6668; --line:#F0E3E1;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:'IBM Plex Sans Thai',sans-serif;background:var(--cream);color:var(--ink);
+    font-size:16px;line-height:1.65;max-width:480px;margin:0 auto;
+    padding:0 20px calc(96px + env(safe-area-inset-bottom))}
+  .serif{font-family:'Trirong',serif}
+
+  /* header เล็กๆ ไม่มีเมนู */
+  header{text-align:center;padding:22px 0 4px}
+  header .logo{font-family:'Trirong',serif;font-size:15px;font-weight:600;color:var(--rose-deep);letter-spacing:.04em}
+
+  /* ทักทายด้วยชื่อก่อนทุกอย่าง */
+  .greet{text-align:center;margin:10px 0 18px}
+  .greet h1{font-family:'Trirong',serif;font-size:27px;font-weight:600;line-height:1.4}
+  .greet p{font-size:14px;color:var(--ink2);margin-top:4px}
+
+  /* บัตรสมาชิก */
+  .mcard{background:linear-gradient(135deg,#c98d95 0%,#8f4f5c 100%);border-radius:22px;
+    color:#fff;padding:22px 22px 18px;box-shadow:0 14px 34px rgba(143,79,92,.32);
+    position:relative;overflow:hidden}
+  .mcard::after{content:"";position:absolute;right:-50px;top:-60px;width:190px;height:190px;
+    border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.22),transparent 65%)}
+  .mcard .tier{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;
+    background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.35);
+    border-radius:999px;padding:5px 13px;backdrop-filter:blur(4px)}
+  .mcard .name{font-family:'Trirong',serif;font-size:24px;font-weight:600;margin-top:12px}
+  .mcard .meta{display:flex;justify-content:space-between;align-items:flex-end;margin-top:16px;font-size:12.5px;opacity:.92}
+  .mcard .meta b{font-size:19px;font-weight:600;display:block;font-variant-numeric:tabular-nums}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 18px 16px;
+    margin-top:14px;box-shadow:0 2px 10px rgba(61,44,49,.04)}
+  .card h2{font-size:15px;font-weight:700;display:flex;gap:8px;align-items:center}
+  .card .sub{font-size:13px;color:var(--ink2);margin-top:2px}
+
+  /* แสตมป์ */
+  .stamps{display:flex;justify-content:space-between;margin:16px 2px 8px}
+  .st{width:34px;height:34px;border-radius:50%;border:2px dashed var(--rose-soft);
+    display:grid;place-items:center;font-size:15px}
+  .st.on{background:linear-gradient(135deg,var(--rose),var(--rose-deep));border:0;color:#fff}
+  .st.gift{border-color:var(--gold);font-size:16px}
+  .stamp-note{text-align:center;font-size:13.5px;color:var(--rose-deep);font-weight:600;margin-top:8px}
+
+  /* ถึงรอบ */
+  .cycle{background:linear-gradient(135deg,#fdf1ee,#f8f0dd);border:1px solid #f0e0cf}
+  .cycle .big{font-family:'Trirong',serif;font-size:19px;font-weight:600;margin:6px 0 2px}
+
+  /* สิ่งที่เราจำได้ */
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .chip{font-size:13.5px;background:var(--blush);border:1px solid var(--line);
+    border-radius:999px;padding:7px 14px;color:var(--rose-deep);font-weight:500}
+
+  /* สีมงคล */
+  .lucky{display:flex;gap:10px;margin-top:12px}
+  .lc{flex:1;text-align:center;font-size:12px;color:var(--ink2)}
+  .lc i{display:block;height:44px;border-radius:12px;margin-bottom:6px;border:1px solid rgba(0,0,0,.06)}
+
+  /* งานหน้า */
+  .event{border-left:3px solid var(--gold);background:#fffdf6}
+
+  /* ประวัติ */
+  .hist{margin-top:10px}
+  .h-row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+  .h-row:last-child{border-bottom:0}
+  .h-row .d{color:var(--ink2);flex:none}
+
+  /* ปุ่มเดียว ใหญ่ ติดล่าง */
+  .cta{position:fixed;left:0;right:0;bottom:0;max-width:480px;margin:0 auto;
+    padding:12px 20px calc(14px + env(safe-area-inset-bottom));
+    background:linear-gradient(transparent,var(--cream) 34%)}
+  .cta button{width:100%;border:0;border-radius:999px;padding:17px;font-size:17px;font-weight:700;
+    font-family:inherit;color:#fff;background:linear-gradient(135deg,var(--rose),var(--rose-deep));
+    box-shadow:0 8px 26px rgba(143,79,92,.4);cursor:pointer}
+  .cta .mini{text-align:center;font-size:11.5px;color:var(--ink2);margin-top:7px}
+
+  footer{text-align:center;margin-top:26px;font-size:12px;color:var(--ink2);line-height:1.9}
+  footer .brand{font-family:'Trirong',serif;color:var(--rose-deep);font-size:13px}
+</style>
+</head>
+<body>
+
+<header><div class="logo">🌸 เกศเกล้า บึงสามพัน</div></header>
+
+<div class="greet">
+  <h1>สวัสดีค่ะ พี่ติ้ม</h1>
+  <p>ขอบคุณที่ให้เราดูแลมา 17 ครั้งแล้วนะคะ</p>
+</div>
+
+<div class="mcard">
+  <span class="tier">💎 ลูกค้าคนพิเศษของร้าน</span>
+  <div class="name serif">คุณติ้ม</div>
+  <div class="meta">
+    <span>สมาชิกตั้งแต่<b>เม.ย. 2569</b></span>
+    <span style="text-align:center">มาแล้ว<b>17 ครั้ง</b></span>
+    <span style="text-align:right">ดูแลโดย<b>กิ๊ฟ & ชมพู</b></span>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🎫 บันไดสะสมของพี่</h2>
+  <div class="sub">ครบ 8 ครั้ง รับสปามือฟรี 1 ครั้ง — ระบบนับจากการมาจริง ไม่ต้องพกบัตร</div>
+  <div class="stamps">
+    <div class="st on">✓</div><div class="st on">✓</div><div class="st on">✓</div>
+    <div class="st on">✓</div><div class="st on">✓</div><div class="st"></div>
+    <div class="st"></div><div class="st gift">🎁</div>
+  </div>
+  <div class="stamp-note">อีก 3 ครั้ง รับสปามือฟรีแล้วค่ะ</div>
+</div>
+
+<div class="card cycle">
+  <h2>💅 ใกล้ถึงรอบสวยแล้ว</h2>
+  <div class="big serif">ครั้งล่าสุดผ่านมา 11 วันแล้วค่ะ</div>
+  <div class="sub">ปกติพี่ติ้มชอบมาทุกๆ ประมาณ 2 อาทิตย์ — ถ้าสะดวกช่วงนี้ เดี๋ยวเราจองคิวสวยๆ ไว้ให้ก่อนนะคะ</div>
+</div>
+
+<div class="card">
+  <h2>🤍 สิ่งที่เราจำได้เกี่ยวกับพี่</h2>
+  <div class="chips">
+    <span class="chip">ชอบโทนพาสเทล</span>
+    <span class="chip">เล็บทรงอัลมอนด์</span>
+    <span class="chip">ชาร้อนไม่ใส่น้ำตาล</span>
+    <span class="chip">ชอบเพลงเบาๆ</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🔮 สีเสริมดวงของพี่วันนี้</h2>
+  <div class="sub">วันอังคาร — ตามความเชื่อว่ากันว่าเสริมความมั่นใจค่ะ</div>
+  <div class="lucky">
+    <div class="lc"><i style="background:#d8a7c7"></i>ชมพูอมม่วง</div>
+    <div class="lc"><i style="background:#b9a7d8"></i>ลาเวนเดอร์</div>
+    <div class="lc"><i style="background:#c98d95"></i>โอลด์โรส</div>
+  </div>
+</div>
+
+<div class="card event">
+  <h2>📅 งานสำคัญของพี่</h2>
+  <div class="sub" style="margin-top:6px"><b style="color:var(--ink)">งานบวชหลานชาย — อีก 12 วัน</b><br>
+  ถ้าอยากให้มือสวยพอดีวันงาน แนะนำทำช่วง 2-3 วันก่อนงานค่ะ จองล่วงหน้าได้เลยนะคะ</div>
+</div>
+
+<div class="card">
+  <h2>📖 ครั้งล่าสุดของพี่</h2>
+  <div class="hist">
+    <div class="h-row"><span>ทาสีเจล + เสริมบำรุงหน้าเล็บ</span><span class="d">31 ก.ค.</span></div>
+    <div class="h-row"><span>สปามือ L'occitane</span><span class="d">16 ก.ค.</span></div>
+    <div class="h-row"><span>ทาสีเจล</span><span class="d">2 ก.ค.</span></div>
+  </div>
+</div>
+
+<footer>
+  <div class="brand">“ดูแลมือที่ดูแลทุกคน”</div>
+  รับประกันแก้ฟรี 7 วัน · เกศเกล้า บึงสามพัน<br>
+  หน้านี้เป็นของพี่ติ้มคนเดียว — ข้อมูลไม่แชร์ให้ใคร
+</footer>
+
+<div class="cta">
+  <button onclick="alert('เด้งเข้า LINE ร้านพร้อมข้อความ: สวัสดีค่ะ พี่ติ้มอยากจองคิวค่ะ 🌸')">💬 จองคิวกับร้าน</button>
+  <div class="mini">แตะแล้วเด้งเข้า LINE ร้าน พร้อมข้อความจองให้เลย ไม่ต้องพิมพ์เอง</div>
+</div>
+
+</body>
+</html>
